@@ -1,0 +1,32 @@
+div {
+  background: #eeebdd;
+  color: #1b1717;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Syne Mono", monospace;
+}
+
+.container {
+  margin: 5px;
+  padding: 15px;
+  text-align: center;
+}
+
+.current {
+  border: 1px solid #1b1717;
+  border-radius: 50%;
+  padding: 5px 20px;
+  margin: 50px auto;
+}
+
+.total {
+  border: 1px solid #810000;
+  background: #630000;
+  color: #eeebdd;
+  padding: 5px;
+  margin: 5px;
+  padding: 5px 100%;
+  border-radius: 20px;
+}

@@ -1,0 +1,19 @@
+button {
+  background: transparent;
+  padding: 7px 15px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #1b1717;
+  color: #1b1717;
+  border-radius: 30px;
+}
+
+button:hover {
+  color: #810000;
+  cursor: pointer;
+  border: 1px solid #810000;
+}
+
+i {
+  padding-right: 10px;
+}
