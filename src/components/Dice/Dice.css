@@ -1,4 +1,4 @@
-div {
+.dice {
   background: black;
   margin: 5px;
   display: flex;
@@ -12,4 +12,5 @@ div {
 
 img {
   margin: 7px;
+  width: 80px;
 }

@@ -1,0 +1,14 @@
+.players {
+  display: flex;
+  flex-direction: row;
+}
+
+.players > div {
+  width: 50vw;
+}
+
+/* .container2 {
+  display: flex;
+  flex-direction: column;
+  background: chartreuse;
+} */

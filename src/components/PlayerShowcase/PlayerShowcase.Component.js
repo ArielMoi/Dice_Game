@@ -3,12 +3,12 @@ import "./PlayerShowcase.css";
 
 function PlayerShowcase(props) {
   return (
-    <div className="container">
-      <div>
+    <div className="player container">
+      <div className="player">
         <h1>Player {props.player}</h1>
       </div>
-      <div>
-        <div className="current">
+      <div className="player scores">
+        <div className="player count">
           <h1>{props.count}</h1>
         </div>
         <div className="total">

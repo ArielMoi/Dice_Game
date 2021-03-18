@@ -6,6 +6,7 @@ button {
   border: 1px solid #1b1717;
   color: #1b1717;
   border-radius: 30px;
+  margin: 5px;
 }
 
 button:hover {
