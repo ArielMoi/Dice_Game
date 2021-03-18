@@ -57,44 +57,40 @@ class App extends React.Component {
   };
 
   switchTurn = () => {
-    this.state.player1.isCurrent &&
-      this.setState({
-        player1: {
-          count: 0,
-          total: this.state.player1.total,
-          isCurrent: false,
-        },
-        player2: {
-          count: 0,
-          total: this.state.player2.total,
-          isCurrent: true,
-        },
-      });
+    // !! bug --- don't switch player in dom
 
-    this.state.player2.isCurrent &&
+    if (this.state.player1.isCurrent) {
       this.setState({
         player1: {
-          count: 0,
-          total: this.state.player1.total,
+          count    : 0,
+          total    : this.state.player1.total,
+          isCurrent: false,
+        },
+        player2: {
+          count    : 0,
+          total    : this.state.player2.total,
+          isCurrent: true,
+        },
+      });
+    } else {
+      this.setState({
+        player1: {
+          count    : 0,
+          total    : this.state.player1.total,
           isCurrent: true,
         },
         player2: {
-          count: 0,
-          total: this.state.player2.total,
+          count    : 0,
+          total    : this.state.player2.total,
           isCurrent: false,
         },
       });
+    }
   };
 
-  // currentPlayer = () => {
-  //   this.state.player1.isCurrent &&
-  // }
-
   playerHold = async () => {
-    console.log('hold!!');
+    let player = this.state.player1.isCurrent ? "player1" : "player2";
 
-    let player = this.state.player1.isCurrent ? 'player1' : 'player2';
-    console.log(player);
     await this.setState({
       [player]: {
         count: 0,
@@ -103,12 +99,17 @@ class App extends React.Component {
       },
     });
 
-    this.switchTurn();
+    await this.switchTurn();
   };
+
+  // doesn`t switch turn!!
+  // ! check
 
   checkIfWinner = () => {};
 
   newGame = () => {};
+
+  adjustAmountToWin = () => {};
 
   render() {
     return (
