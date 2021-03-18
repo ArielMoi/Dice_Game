@@ -57,31 +57,29 @@ class App extends React.Component {
   };
 
   switchTurn = () => {
-    // !! bug --- don't switch player in dom
-
     if (this.state.player1.isCurrent) {
       this.setState({
         player1: {
-          count    : 0,
-          total    : this.state.player1.total,
+          count: 0,
+          total: this.state.player1.total,
           isCurrent: false,
         },
         player2: {
-          count    : 0,
-          total    : this.state.player2.total,
+          count: 0,
+          total: this.state.player2.total,
           isCurrent: true,
         },
       });
     } else {
       this.setState({
         player1: {
-          count    : 0,
-          total    : this.state.player1.total,
+          count: 0,
+          total: this.state.player1.total,
           isCurrent: true,
         },
         player2: {
-          count    : 0,
-          total    : this.state.player2.total,
+          count: 0,
+          total: this.state.player2.total,
           isCurrent: false,
         },
       });
@@ -102,12 +100,22 @@ class App extends React.Component {
     await this.switchTurn();
   };
 
-  // doesn`t switch turn!!
-  // ! check
-
   checkIfWinner = () => {};
 
-  newGame = () => {};
+  newGame = () => {
+    this.setState({
+      player1: {
+        count: 0,
+        total: 0,
+        isCurrent: true,
+      },
+      player2: {
+        count: 0,
+        total: 0,
+        isCurrent: false,
+      },
+    });
+  };
 
   adjustAmountToWin = () => {};
 
@@ -117,14 +125,14 @@ class App extends React.Component {
         <div className="players">
           <div>
             <PlayerShowcase
-              player={this.state.player1.player}
+              player='1'
               count={this.state.player1.count}
               total={this.state.player1.total}
             />
           </div>
           <div>
             <PlayerShowcase
-              player={this.state.player2.player}
+              player='2'
               count={this.state.player2.count}
               total={this.state.player2.total}
             />
@@ -135,6 +143,7 @@ class App extends React.Component {
           secondDice={this.state.dice[1]}
           rollFunction={this.throwDice}
           holdFunction={this.playerHold}
+          newGameFunction={this.newGame}
         />
       </div>
     );
