@@ -14,3 +14,10 @@ img {
   margin: 7px;
   width: 80px;
 }
+
+@media (max-width: 830px) {
+  img {
+    margin: 3px;
+    width: 40px;
+  }
+}

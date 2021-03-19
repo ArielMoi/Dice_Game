@@ -7,7 +7,6 @@
   padding: 15px;
   text-align: center;
   background: #eeebdd;
-  /* background: #c5c1ad; */
   display: flex;
   flex-direction: column;
 }
@@ -26,4 +25,11 @@
   margin: 5px;
   padding: 5px;
   border-radius: 20px;
+}
+
+@media (max-width: 830px) {
+  .container {
+    margin: 2px;
+    padding: 5px;
+  }
 }

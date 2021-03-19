@@ -24,3 +24,13 @@ button:focus {
 i {
   padding-right: 10px;
 }
+
+@media (max-width: 830px) {
+  i {
+    padding-right: 1px;
+  }
+
+  button {
+    margin: 2px;
+  }
+}

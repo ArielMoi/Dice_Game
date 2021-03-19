@@ -25,7 +25,7 @@ class App extends React.Component {
     },
     dice: [Math.floor(Math.random() * 6), Math.floor(Math.random() * 6)],
     winner: ["", "hidden"], // hidden for still no winner -> when winner change to visible for winner message
-    isSixSix: "hidden", // show you got 6 6 message.
+    isSixSix: ["hidden", false], // show you got 6 6 message, and disable=true for roll dice while 6 6 message
   };
 
   updateCurrentPlayerAmount = (firstDice, secondDice) => {
@@ -61,9 +61,9 @@ class App extends React.Component {
         dice: [firstDice, secondDice],
       });
 
-      await this.setState({ isSixSix: "visible" });
+      await this.setState({ isSixSix: ["visible", true] });
       await setTimeout(() => {
-        this.setState({ isSixSix: "hidden" });
+        this.setState({ isSixSix: ["hidden", false] });
       }, 2000);
 
       await this.switchTurn();
@@ -166,7 +166,7 @@ class App extends React.Component {
           <HiddenMessage
             mainText="you got 6 * 6!"
             secondaryText="you lost all your current amount and you turn."
-            mesVisibility={this.state.isSixSix}
+            mesVisibility={this.state.isSixSix[0]}
           />
           <WinningMessage
             newGameFunction={this.newGame}
@@ -193,6 +193,7 @@ class App extends React.Component {
           holdFunction={this.playerHold}
           newGameFunction={this.newGame}
           onChangefunc={this.adjustAmountToWin}
+          isRollDisabled={this.state.isSixSix[1]}
         />
       </div>
     );

@@ -16,12 +16,25 @@ function FunctionalityBoard(props){
     return (
       <div className="func-container">
         <div className="main-container">
-          <Button i="fas fa-dice fa-2x" buttonText="Roll Dice" onClickFunc={props.rollFunction}/>
+          <Button
+            i="fas fa-dice fa-2x"
+            buttonText="Roll Dice"
+            onClickFunc={props.rollFunction}
+            isDisabled={props.isRollDisabled}
+          />
           <Dice src1={dice[props.firstDice]} src2={dice[props.secondDice]} />
-          <Button i="fas fa-hand-holding fa-2x" buttonText="Hold" onClickFunc={props.holdFunction}/>
+          <Button
+            i="fas fa-hand-holding fa-2x"
+            buttonText="Hold"
+            onClickFunc={props.holdFunction}
+          />
         </div>
         <div className="foot-container">
-          <Button i="fas fa-plus fa-2x" buttonText="New Game" onClickFunc={props.newGameFunction}/>
+          <Button
+            i="fas fa-plus fa-2x"
+            buttonText="New Game"
+            onClickFunc={props.newGameFunction}
+          />
           <div className="adjust-win">
             <label>Adjust Winning Score:</label>
             <input type="text" onChange={props.onChangefunc}></input>
