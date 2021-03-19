@@ -1,5 +1,4 @@
 .player {
-  background: #eeebdd;
   font-family: "Syne Mono", monospace;
 }
 
@@ -8,6 +7,7 @@
   padding: 15px;
   text-align: center;
   background: #eeebdd;
+  /* background: #c5c1ad; */
   display: flex;
   flex-direction: column;
 }
@@ -27,55 +27,3 @@
   padding: 5px;
   border-radius: 20px;
 }
-
-/* div {
-  background: #eeebdd;
-  color: #1b1717;
-  font-family: "Syne Mono", monospace;
-  background: #630000;
-}
-
-* {
-  color: #630000;
-  font-family: "Syne Mono", monospace;
-}
-
-.container {
-  margin: 5px;
-  padding: 15px;
-  text-align: center;
-  background: #eeebdd;
-  display: flex;
-  flex-direction: column;
-}
-
-.current {
-  border: 1px solid #1b1717;
-  border-radius: 50%;
-  padding: 5px 20px;
-  margin: 10px;
-}
-
-.total {
-  border: 1px solid #810000;
-  background: #630000;
-  color: #1b1717;
-  padding: 5px;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 20px;
-}
-
-.scores {
-  display: flex;
-  flex-direction: column;
-} */
-
-/* .container {
-  background: #eeebdd;
-  color: #630000;
-}
-
-div {
-  background: #eeebdd;
-} */

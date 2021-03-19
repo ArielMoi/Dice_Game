@@ -3,7 +3,7 @@ import "./PlayerShowcase.css";
 
 function PlayerShowcase(props) {
   return (
-    <div className="player container">
+    <div className="player container" style={{background:props.background}}>
       <div className="player">
         <h1>Player {props.player}</h1>
       </div>

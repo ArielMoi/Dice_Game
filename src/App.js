@@ -1,7 +1,12 @@
 import React from "react";
 import FunctionalityBoard from "./components/FunctionalityBoard/FunctionalityBoard.Component";
 import PlayerShowcase from "./components/PlayerShowcase/PlayerShowcase.Component";
+import WinningMessage from "./components/WinningMessage/WinningMessage.Component";
 import "./App.css";
+
+let activePlayerBackground = "#c5c1ad";
+let nonActiveBackground = "#eeebdd";
+let maxPoints = 100;
 
 class App extends React.Component {
   state = {
@@ -9,14 +14,16 @@ class App extends React.Component {
       count: 0,
       total: 0,
       isCurrent: true,
+      background: activePlayerBackground,
     },
     player2: {
       count: 0,
       total: 0,
       isCurrent: false,
+      background: nonActiveBackground,
     },
     dice: [Math.floor(Math.random() * 6), Math.floor(Math.random() * 6)],
-    currentPlayer: "player1",
+    winner: ["", 'hidden'], // hidden for still no winner -> when winner change to visible for winner message
   };
 
   updateCurrentPlayerAmount = (firstDice, secondDice) => {
@@ -28,6 +35,7 @@ class App extends React.Component {
           count: this.state.player1.count + secondDice + firstDice,
           total: this.state.player1.total,
           isCurrent: true,
+          background: activePlayerBackground,
         },
       });
 
@@ -37,6 +45,7 @@ class App extends React.Component {
           count: this.state.player2.count + secondDice + firstDice,
           total: this.state.player2.total,
           isCurrent: true,
+          background: activePlayerBackground,
         },
       });
   };
@@ -54,6 +63,8 @@ class App extends React.Component {
 
       this.updateCurrentPlayerAmount(firstDice, secondDice);
     }
+
+    this.checkIfWinner(maxPoints);
   };
 
   switchTurn = () => {
@@ -63,11 +74,13 @@ class App extends React.Component {
           count: 0,
           total: this.state.player1.total,
           isCurrent: false,
+          background: nonActiveBackground,
         },
         player2: {
           count: 0,
           total: this.state.player2.total,
           isCurrent: true,
+          background: activePlayerBackground,
         },
       });
     } else {
@@ -76,11 +89,13 @@ class App extends React.Component {
           count: 0,
           total: this.state.player1.total,
           isCurrent: true,
+          background: activePlayerBackground,
         },
         player2: {
           count: 0,
           total: this.state.player2.total,
           isCurrent: false,
+          background: nonActiveBackground,
         },
       });
     }
@@ -97,10 +112,19 @@ class App extends React.Component {
       },
     });
 
+    this.checkIfWinner(maxPoints);
     await this.switchTurn();
+    
   };
 
-  checkIfWinner = () => {};
+  checkIfWinner = (pointsToWon) => {
+    if (this.state.player1.total >= pointsToWon){
+      this.setState({winner:['1', 'visible']})
+    }
+    if (this.state.player2.total >= pointsToWon){
+      this.setState({winner:['2', 'visible']})
+    }
+  };
 
   newGame = () => {
     this.setState({
@@ -108,35 +132,43 @@ class App extends React.Component {
         count: 0,
         total: 0,
         isCurrent: true,
+        background: activePlayerBackground,
       },
       player2: {
         count: 0,
         total: 0,
         isCurrent: false,
+        background: nonActiveBackground,
       },
+      winner:['','hidden']
     });
   };
 
-  adjustAmountToWin = () => {};
+  adjustAmountToWin = (e) => {
+    maxPoints = e.target.value
+  };
 
   render() {
     return (
       <div>
         <div className="players">
-          <div>
-            <PlayerShowcase
-              player='1'
-              count={this.state.player1.count}
-              total={this.state.player1.total}
-            />
-          </div>
-          <div>
-            <PlayerShowcase
-              player='2'
-              count={this.state.player2.count}
-              total={this.state.player2.total}
-            />
-          </div>
+          <WinningMessage
+            newGameFunction={this.newGame}
+            winner={this.state.winner[0]}
+            winMesVisibility={this.state.winner[1]}
+          />
+          <PlayerShowcase
+            player="1"
+            count={this.state.player1.count}
+            total={this.state.player1.total}
+            background={this.state.player1.background}
+          />
+          <PlayerShowcase
+            player="2"
+            count={this.state.player2.count}
+            total={this.state.player2.total}
+            background={this.state.player2.background}
+          />
         </div>
         <FunctionalityBoard
           firstDice={this.state.dice[0]}
@@ -144,6 +176,7 @@ class App extends React.Component {
           rollFunction={this.throwDice}
           holdFunction={this.playerHold}
           newGameFunction={this.newGame}
+          onChangefunc={this.adjustAmountToWin}
         />
       </div>
     );
@@ -151,3 +184,6 @@ class App extends React.Component {
 }
 
 export default App;
+
+// TODO:
+// - adjust focus on button (different css)

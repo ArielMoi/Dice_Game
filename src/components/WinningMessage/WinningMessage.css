@@ -1,0 +1,20 @@
+.winning-message {
+  background: #eeebdd;
+  color: #810000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+  border-radius: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.win-icon {
+  color: #1b17178a;
+  margin-bottom: 15px;
+}

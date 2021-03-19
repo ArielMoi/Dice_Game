@@ -8,12 +8,17 @@ button {
   border-radius: 30px;
   margin: 5px;
   height: max-content;
+  font-family: "Cormorant Unicase", serif;
+  font-weight: 600;
 }
 
-button:hover {
+button:hover,
+button:active,
+button:focus {
   color: #810000;
   cursor: pointer;
   border: 1px solid #810000;
+  border-radius: 30px;
 }
 
 i {

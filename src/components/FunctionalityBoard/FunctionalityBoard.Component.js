@@ -24,7 +24,7 @@ function FunctionalityBoard(props){
           <Button i="fas fa-plus fa-2x" buttonText="New Game" onClickFunc={props.newGameFunction}/>
           <div className="adjust-win">
             <label>Adjust Winning Score:</label>
-            <input type="text"></input>
+            <input type="text" onChange={props.onChangefunc}></input>
           </div>
         </div>
       </div>
