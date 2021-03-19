@@ -2,6 +2,7 @@ import React from "react";
 import FunctionalityBoard from "./components/FunctionalityBoard/FunctionalityBoard.Component";
 import PlayerShowcase from "./components/PlayerShowcase/PlayerShowcase.Component";
 import WinningMessage from "./components/WinningMessage/WinningMessage.Component";
+import HiddenMessage from "./components/HiddenMessage/HiddenMessage.Component";
 import "./App.css";
 
 let activePlayerBackground = "#c5c1ad";
@@ -23,7 +24,8 @@ class App extends React.Component {
       background: nonActiveBackground,
     },
     dice: [Math.floor(Math.random() * 6), Math.floor(Math.random() * 6)],
-    winner: ["", 'hidden'], // hidden for still no winner -> when winner change to visible for winner message
+    winner: ["", "hidden"], // hidden for still no winner -> when winner change to visible for winner message
+    isSixSix: "hidden", // show you got 6 6 message.
   };
 
   updateCurrentPlayerAmount = (firstDice, secondDice) => {
@@ -55,7 +57,17 @@ class App extends React.Component {
     let secondDice = Math.floor(Math.random() * 6);
 
     if (firstDice === 5 && secondDice === 5) {
+      await this.setState({
+        dice: [firstDice, secondDice],
+      });
+
+      await this.setState({ isSixSix: "visible" });
+      await setTimeout(() => {
+        this.setState({ isSixSix: "hidden" });
+      }, 2000);
+
       await this.switchTurn();
+
     } else {
       await this.setState({
         dice: [firstDice, secondDice],
@@ -114,15 +126,14 @@ class App extends React.Component {
 
     this.checkIfWinner(maxPoints);
     await this.switchTurn();
-    
   };
 
   checkIfWinner = (pointsToWon) => {
-    if (this.state.player1.total >= pointsToWon){
-      this.setState({winner:['1', 'visible']})
+    if (this.state.player1.total >= pointsToWon) {
+      this.setState({ winner: ["1", "visible"] });
     }
-    if (this.state.player2.total >= pointsToWon){
-      this.setState({winner:['2', 'visible']})
+    if (this.state.player2.total >= pointsToWon) {
+      this.setState({ winner: ["2", "visible"] });
     }
   };
 
@@ -140,18 +151,23 @@ class App extends React.Component {
         isCurrent: false,
         background: nonActiveBackground,
       },
-      winner:['','hidden']
+      winner: ["", "hidden"],
     });
   };
 
   adjustAmountToWin = (e) => {
-    maxPoints = e.target.value
+    maxPoints = e.target.value;
   };
 
   render() {
     return (
       <div>
         <div className="players">
+          <HiddenMessage
+            mainText="you got 6 * 6!"
+            secondaryText="you lost all your current amount and you turn."
+            mesVisibility={this.state.isSixSix}
+          />
           <WinningMessage
             newGameFunction={this.newGame}
             winner={this.state.winner[0]}
