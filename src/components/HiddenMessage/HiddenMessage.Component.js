@@ -4,8 +4,14 @@ import "./HiddenMessage.css";
 function HiddenMessage(props) {
   return (
     <div className="hidden-message" style={{ visibility: props.mesVisibility }}>
-      <h3>{props.secondaryText}</h3>
-      <h1>{props.mainText}</h1>
+      <img
+        className="gif"
+        src="https://media.giphy.com/media/3ohjV5uukLAvnhS7vy/giphy.gif"
+      />
+      <div>
+        <h1>{props.mainText}</h1>
+        <h3>{props.secondaryText}</h3>
+      </div>
     </div>
   );
 }

@@ -64,7 +64,7 @@ class App extends React.Component {
       await this.setState({ isSixSix: ["visible", true] });
       await setTimeout(() => {
         this.setState({ isSixSix: ["hidden", false] });
-      }, 2000);
+      }, 4500);
 
       await this.switchTurn();
 
@@ -165,7 +165,7 @@ class App extends React.Component {
         <div className="players">
           <HiddenMessage
             mainText="you got 6 * 6!"
-            secondaryText="you lost all your current amount and you turn."
+            secondaryText="you lost all your current amount and your turn."
             mesVisibility={this.state.isSixSix[0]}
           />
           <WinningMessage
