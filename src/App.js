@@ -30,11 +30,11 @@ class App extends React.Component {
 
   updateCurrentPlayerAmount = (firstDice, secondDice) => {
     firstDice++;
-    secondDice++;
+    secondDice++; // * adding one to dice because is 0-5 (index) for the pics. but to calculate need to be 1 to 6.
     this.state.player1.isCurrent &&
       this.setState({
         player1: {
-          count: this.state.player1.count + secondDice + firstDice,
+          count: this.state.player1.count + secondDice + firstDice, // adding to count current dice
           total: this.state.player1.total,
           isCurrent: true,
           background: activePlayerBackground,
@@ -54,14 +54,15 @@ class App extends React.Component {
 
   throwDice = async () => {
     let firstDice = Math.floor(Math.random() * 6);
-    let secondDice = Math.floor(Math.random() * 6);
+    let secondDice = Math.floor(Math.random() * 6); // randomize dice
 
-    if (firstDice === 5 && secondDice === 5) {
+    // make async so the state will be updatet for each function
+    if (firstDice === 5 && secondDice === 5) { // if 6 6 in dices
       await this.setState({
         dice: [firstDice, secondDice],
       });
 
-      await this.setState({ isSixSix: ["visible", true] });
+      await this.setState({ isSixSix: ["visible", true] }); /// message to indicate 6 6.
       await setTimeout(() => {
         this.setState({ isSixSix: ["hidden", false] });
       }, 4500);
@@ -116,7 +117,7 @@ class App extends React.Component {
   playerHold = async () => {
     let player = this.state.player1.isCurrent ? "player1" : "player2";
 
-    await this.setState({
+    await this.setState({ // adding count to total and reset count
       [player]: {
         count: 0,
         total: this.state[player].total + this.state[player].count,
@@ -125,7 +126,7 @@ class App extends React.Component {
     });
 
     this.checkIfWinner(maxPoints);
-    await this.switchTurn();
+    await this.switchTurn(); // await to switch turn when the amounts and total are updated
   };
 
   checkIfWinner = (pointsToWon) => {
@@ -137,7 +138,7 @@ class App extends React.Component {
     }
   };
 
-  newGame = () => {
+  newGame = () => { // resetting details
     this.setState({
       player1: {
         count: 0,
